@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>StaffFlow - Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body class="dashboard-body">
+
+    <div class="app-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+
+                <h2>StaffFlow</h2>
+
+                <p>Work • Learn • Track</p>
+
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <a
+                    href="dashboard.html"
+                    class="menu-item active"
+                >
+                    Dashboard
+                </a>
+
+                <a
+                    href="announcements.html"
+                    class="menu-item"
+                >
+                    Announcements
+                </a>
+
+                <a
+                    href="requests.html"
+                    class="menu-item"
+                >
+                    Requests
+                </a>
+
+                <a
+                    href="requests.html"
+                    class="menu-item"
+                >
+                    Training Center
+                </a>
+
+                <a
+                    href="tracking.html"
+                    class="menu-item"
+                >
+                    Tracking
+                </a>
+
+                <a
+                    href="#"
+                    class="menu-item admin-only"
+                >
+                    User Management
+                </a>
+
+                <a
+                    href="reports.html"
+                    class="menu-item"
+                >
+                    Reports
+                </a>
+
+            </nav>
+
+            <button
+                class="logout-button"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Topbar -->
+            <header class="topbar">
+
+                <div>
+
+                    <h1>
+                        สวัสดี
+                        <span id="welcomeName"></span>
+                    </h1>
+
+                    <p>
+                        มาดูภาพรวมงานและการพัฒนาของคุณวันนี้
+                    </p>
+
+                </div>
+
+
+                <div class="user-profile">
+
+                    <div class="avatar">
+                        SF
+                    </div>
+
+                    <div>
+
+                        <strong id="userName"></strong>
+
+                        <small id="userRole"></small>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- Summary Cards -->
+            <section class="summary-grid">
+
+                <div class="summary-card">
+
+                    <p>Active Requests</p>
+
+                    <h2>5</h2>
+
+                    <span>
+                        กำลังดำเนินการ
+                    </span>
+
+                </div>
+
+                <div class="summary-card">
+
+                    <p>Training in Progress</p>
+
+                    <h2>3</h2>
+
+                    <span>
+                        หลักสูตรที่กำลังเรียน
+                    </span>
+
+                </div>
+
+                <div class="summary-card">
+
+                    <p>Completed This Week</p>
+
+                    <h2>12</h2>
+
+                    <span>
+                        งานที่เสร็จแล้ว
+                    </span>
+
+                </div>
+
+                <div class="summary-card">
+
+                    <p>Participation Rate</p>
+
+                    <h2>89%</h2>
+
+                    <span>
+                        อัตราการมีส่วนร่วม
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- Main Dashboard Grid -->
+            <section class="dashboard-grid">
+
+                <!-- Announcement -->
+                <div class="dashboard-card announcement-card">
+
+                    <div class="card-header">
+
+                        <h3>
+                            ประกาศล่าสุด
+                        </h3>
+
+                        <a href="announcements.html">
+                            ดูทั้งหมด
+                        </a>
+
+                    </div>
+
+                    <div class="announcement-highlight">
+
+                        <span class="badge">
+                            Announcement
+                        </span>
+
+                        <h3>
+                            เตรียมความพร้อมกิจกรรมประจำเดือน
+                        </h3>
+
+                        <p>
+                            ขอความร่วมมือทุกฝ่ายตรวจสอบ
+                            งานและกิจกรรมที่ได้รับมอบหมาย
+                            ก่อนถึงวันดำเนินงานจริง
+                        </p>
+
+                        <small>
+                            อัปเดตล่าสุด วันนี้
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- My Requests -->
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <h3>
+                            งานของฉัน
+                        </h3>
+
+                        <a href="requests.html">
+                            ดูทั้งหมด
+                        </a>
+
+                    </div>
+
+
+                    <div class="request-item">
+
+                        <div>
+
+                            <strong>
+                                เตรียมพื้นที่งานกิจกรรม
+                            </strong>
+
+                            <p>
+                                Operation Support
+                            </p>
+
+                        </div>
+
+                        <span class="status progress">
+                            In Progress
+                        </span>
+
+                    </div>
+
+
+                    <div class="request-item">
+
+                        <div>
+
+                            <strong>
+                                ขออุปกรณ์สำหรับอบรม
+                            </strong>
+
+                            <p>
+                                HR Training
+                            </p>
+
+                        </div>
+
+                        <span class="status pending">
+                            Pending
+                        </span>
+
+                    </div>
+
+
+                    <div class="request-item">
+
+                        <div>
+
+                            <strong>
+                                สรุปผลกิจกรรมพนักงาน
+                            </strong>
+
+                            <p>
+                                Human Resources
+                            </p>
+
+                        </div>
+
+                        <span class="status completed">
+                            Completed
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Training -->
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <h3>
+                            การฝึกอบรมของฉัน
+                        </h3>
+
+                        <a href="training.html">
+                            Training Center
+                        </a>
+
+                    </div>
+
+
+                    <div class="training-item">
+
+                        <div class="training-title">
+
+                            <strong>
+                                Customer Service Essentials
+                            </strong>
+
+                            <span>
+                                75%
+                            </span>
+
+                        </div>
+
+                        <div class="progress-bar">
+
+                            <div
+                                class="progress-fill"
+                                style="width: 75%;"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="training-item">
+
+                        <div class="training-title">
+
+                            <strong>
+                                Cyber Security Awareness
+                            </strong>
+
+                            <span>
+                                45%
+                            </span>
+
+                        </div>
+
+                        <div class="progress-bar">
+
+                            <div
+                                class="progress-fill"
+                                style="width: 45%;"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="training-item">
+
+                        <div class="training-title">
+
+                            <strong>
+                                Workplace Communication
+                            </strong>
+
+                            <span>
+                                100%
+                            </span>
+
+                        </div>
+
+                        <div class="progress-bar">
+
+                            <div
+                                class="progress-fill"
+                                style="width: 100%;"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Tracking -->
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <h3>
+                            Tracking
+                        </h3>
+
+                        <a href="#">
+                            ดูรายละเอียด
+                        </a>
+
+                    </div>
+
+                    <div class="tracking-list">
+
+                        <div class="tracking-step done">
+
+                            <div class="tracking-dot"></div>
+
+                            <div>
+
+                                <strong>
+                                    สร้างคำขอ
+                                </strong>
+
+                                <p>
+                                    09:00 น.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="tracking-step done">
+
+                            <div class="tracking-dot"></div>
+
+                            <div>
+
+                                <strong>
+                                    มอบหมายงาน
+                                </strong>
+
+                                <p>
+                                    09:20 น.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="tracking-step current">
+
+                            <div class="tracking-dot"></div>
+
+                            <div>
+
+                                <strong>
+                                    กำลังดำเนินการ
+                                </strong>
+
+                                <p>
+                                    ปัจจุบัน
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="tracking-step">
+
+                            <div class="tracking-dot"></div>
+
+                            <div>
+
+                                <strong>
+                                    Completed
+                                </strong>
+
+                                <p>
+                                    รอดำเนินการ
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

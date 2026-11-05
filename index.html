@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StaffFlow - Login</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="logo">
+            <h1>StaffFlow</h1>
+            <p>Work • Learn • Track</p>
+        </div>
+
+        <h2>เข้าสู่ระบบ</h2>
+
+        <p class="subtitle">
+            ยินดีต้อนรับเข้าสู่ StaffFlow
+        </p>
+
+        <div
+            id="errorMessage"
+            class="error-message"
+        ></div>
+
+        <label>Username</label>
+
+        <input
+            id="username"
+            type="text"
+            placeholder="กรอก Username"
+        >
+
+        <label>Password</label>
+
+        <input
+            id="password"
+            type="password"
+            placeholder="กรอก Password"
+        >
+
+        <button onclick="login()">
+            เข้าสู่ระบบ
+        </button>
+
+        <div class="demo-text">
+            StaffFlow • MIS Project
+        </div>
+
+    </div>
+
+    <script src="data/data.js"></script>
+    <script src="js/auth.js"></script>
+
+</body>
+</html>

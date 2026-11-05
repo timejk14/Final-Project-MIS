@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StaffFlow - Reports</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="dashboard-body">
+
+<div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <h2>StaffFlow</h2>
+            <p>Work • Learn • Track</p>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="dashboard.html" class="menu-item">
+                Dashboard
+            </a>
+
+            <a href="announcements.html" class="menu-item">
+                Announcements
+            </a>
+
+            <a href="requests.html" class="menu-item">
+                Requests
+            </a>
+
+            <a href="training.html" class="menu-item">
+                Training Center
+            </a>
+
+            <a href="tracking.html" class="menu-item">
+                Tracking
+            </a>
+
+            <a href="#" class="menu-item admin-only active">
+                Reports
+            </a>
+
+        </nav>
+
+        <button class="logout-button" onclick="logout()">
+            Logout
+        </button>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Reports & Analytics</h1>
+                <p>รายงานภาพรวมการทำงานและการพัฒนาบุคลากร</p>
+            </div>
+
+            <div class="user-profile">
+
+                <div class="avatar">SF</div>
+
+                <div>
+                    <strong id="userName"></strong>
+                    <small id="userRole"></small>
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- Report Content -->
+        <div id="reportContent">
+
+            <!-- Summary -->
+            <section class="summary-grid">
+
+                <div class="summary-card">
+                    <p>Total Requests</p>
+                    <h2 id="totalRequests">0</h2>
+                    <span>คำขอทั้งหมด</span>
+                </div>
+
+                <div class="summary-card">
+                    <p>Completed Requests</p>
+                    <h2 id="completedRequests">0</h2>
+                    <span>งานที่ดำเนินการเสร็จแล้ว</span>
+                </div>
+
+                <div class="summary-card">
+                    <p>Training Completion</p>
+                    <h2 id="trainingRate">0%</h2>
+                    <span>อัตราการอบรมสำเร็จ</span>
+                </div>
+
+                <div class="summary-card">
+                    <p>Announcement Read</p>
+                    <h2 id="readRate">0%</h2>
+                    <span>อัตราการเปิดอ่านประกาศ</span>
+                </div>
+
+            </section>
+
+            <!-- Report Toolbar -->
+            <section class="report-toolbar">
+
+                <div>
+                    <h2>Performance Overview</h2>
+                    <p>สรุปผลการดำเนินงานภายในระบบ</p>
+                </div>
+
+                <button
+                    class="export-report-button"
+                    onclick="exportReport()"
+                >
+                    ↓ Export CSV
+                </button>
+
+            </section>
+
+            <!-- Charts -->
+            <section class="report-grid">
+
+                <!-- Request Report -->
+                <div class="dashboard-card report-card">
+
+                    <div class="card-header">
+                        <h3>Request Status</h3>
+                    </div>
+
+                    <p class="report-description">
+                        สถานะของงานที่อยู่ในระบบ
+                    </p>
+
+                    <div id="requestChart"></div>
+
+                </div>
+
+                <!-- Training Report -->
+                <div class="dashboard-card report-card">
+
+                    <div class="card-header">
+                        <h3>Training Performance</h3>
+                    </div>
+
+                    <p class="report-description">
+                        สถานะความสำเร็จของหลักสูตร
+                    </p>
+
+                    <div id="trainingChart"></div>
+
+                </div>
+
+            </section>
+
+            <!-- Training Table -->
+            <section class="dashboard-card report-table-card">
+
+                <div class="card-header">
+                    <h3>Training Summary</h3>
+                </div>
+
+                <div class="report-table-wrapper">
+
+                    <table class="report-table">
+
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Category</th>
+                                <th>Progress</th>
+                                <th>Status</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="trainingTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+            <!-- Communication Report -->
+            <section class="dashboard-card report-table-card">
+
+                <div class="card-header">
+                    <h3>Communication Report</h3>
+                </div>
+
+                <p class="report-description">
+                    ติดตามการอ่านประกาศและการยืนยันรับทราบของผู้ใช้งาน
+                </p>
+
+                <div class="report-table-wrapper">
+
+                    <table class="report-table">
+
+                        <thead>
+                            <tr>
+                                <th>Announcement</th>
+                                <th>Read</th>
+                                <th>Unread</th>
+                                <th>Acknowledged</th>
+                                <th>Read Rate</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="announcementTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+            <!-- User Activity -->
+            <section class="dashboard-card report-table-card">
+
+                <div class="card-header">
+                    <h3>User Activity Overview</h3>
+                </div>
+
+                <p class="report-description">
+                    สรุปกิจกรรมของผู้ใช้งานแต่ละคน
+                </p>
+
+                <div class="report-table-wrapper">
+
+                    <table class="report-table">
+
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Department</th>
+                                <th>Role</th>
+                                <th>Announcements Read</th>
+                                <th>Acknowledged</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="userActivityTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <div id="reportNotice" style="display:none;">
+            <div class="dashboard-card">
+                <h2>Report Access Restricted</h2>
+                <p>หน้านี้สำหรับ HR Administrator เท่านั้น</p>
+                <a href="dashboard.html">กลับสู่ Dashboard</a>
+            </div>
+        </div>
+
+    </main>
+
+</div>
+
+<script src="data/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/reports.js"></script>
+
+</body>
+</html>

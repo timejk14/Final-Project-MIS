@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        StaffFlow - Request Detail
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body class="dashboard-body">
+
+
+<div class="app-layout">
+
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <h2>
+                StaffFlow
+            </h2>
+
+            <p>
+                Work • Learn • Track
+            </p>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a
+                href="dashboard.html"
+                class="menu-item"
+            >
+                Dashboard
+            </a>
+
+            <a
+                href="announcements.html"
+                class="menu-item"
+            >
+                Announcements
+            </a>
+
+            <a
+                href="requests.html"
+                class="menu-item active"
+            >
+                Requests
+            </a>
+
+            <a
+                href="training.html"
+                class="menu-item"
+            >
+                Training Center
+            </a>
+
+            <a
+                href="tracking.html"
+                class="menu-item"
+            >
+                Tracking
+            </a>
+
+            <a
+                href="reports.html"
+                class="menu-item"
+            >
+                Reports
+            </a>
+
+        </nav>
+
+
+        <button
+            class="logout-button"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </aside>
+
+
+    <!-- Main -->
+    <main class="main-content">
+
+
+        <a
+            href="requests.html"
+            class="back-link"
+        >
+            ← กลับไปหน้า Requests
+        </a>
+
+
+        <section
+            id="requestDetail"
+        >
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+<script src="data/data.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+
+const requestId =
+    localStorage.getItem(
+        "selectedRequest"
+    );
+
+
+const request =
+    requests.find(
+        function (item) {
+
+            return (
+                item.id === requestId
+            );
+
+        }
+    );
+
+
+if (!request) {
+
+    window.location.href =
+        "requests.html";
+
+}
+
+
+function getStatusClass(status) {
+
+    if (status === "In Progress") {
+        return "progress";
+    }
+
+    if (status === "Pending") {
+        return "pending";
+    }
+
+    return "completed";
+}
+
+
+const detail =
+    document.getElementById(
+        "requestDetail"
+    );
+
+
+detail.innerHTML = `
+
+    <div class="request-detail-header">
+
+        <div>
+
+            <span class="request-id">
+                ${request.id}
+            </span>
+
+            <h1>
+                ${request.title}
+            </h1>
+
+            <p>
+                สร้างเมื่อ
+                ${request.createdAt}
+            </p>
+
+        </div>
+
+
+        <span
+            class="
+                status
+                ${getStatusClass(
+                    request.status
+                )}
+            "
+        >
+            ${request.status}
+        </span>
+
+    </div>
+
+
+    <div class="request-meta-grid">
+
+        <div class="detail-card">
+
+            <small>
+                Requester
+            </small>
+
+            <strong>
+                ${request.requester}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-card">
+
+            <small>
+                Assigned To
+            </small>
+
+            <strong>
+                ${request.assignee}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-card">
+
+            <small>
+                Deadline
+            </small>
+
+            <strong>
+                ${request.deadline}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-card">
+
+            <small>
+                Progress
+            </small>
+
+            <strong>
+                ${request.progress}%
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="detail-layout">
+
+
+        <!-- Timeline -->
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3>
+                    Tracking Timeline
+                </h3>
+
+            </div>
+
+
+            <div class="tracking-list">
+
+                ${request.timeline.map(
+                    function (item) {
+
+                        return `
+
+                        <div
+                            class="
+                                tracking-step
+                                ${item.status}
+                            "
+                        >
+
+                            <div
+                                class="tracking-dot"
+                            >
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    ${item.title}
+                                </strong>
+
+                                <p>
+                                    ${item.time}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        `;
+
+                    }
+                ).join("")}
+
+            </div>
+
+        </div>
+
+
+        <!-- Information -->
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3>
+                    รายละเอียดงาน
+                </h3>
+
+            </div>
+
+            <p class="request-description">
+                ${request.description}
+            </p>
+
+
+            <div class="detail-progress">
+
+                <div class="training-title">
+
+                    <strong>
+                        ความคืบหน้า
+                    </strong>
+
+                    <span>
+                        ${request.progress}%
+                    </span>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="
+                            width:
+                            ${request.progress}%;
+                        "
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Communication -->
+        <div class="
+            dashboard-card
+            communication-card
+        ">
+
+            <div class="card-header">
+
+                <h3>
+                    การสื่อสารระหว่างฝ่าย
+                </h3>
+
+            </div>
+
+
+            <div
+                id="messageList"
+                class="message-list"
+            >
+
+                ${request.messages.map(
+                    function (message) {
+
+                        return `
+
+                        <div class="message-item">
+
+                            <div>
+
+                                <strong>
+                                    ${message.sender}
+                                </strong>
+
+                                <small>
+                                    ${message.time}
+                                </small>
+
+                            </div>
+
+                            <p>
+                                ${message.message}
+                            </p>
+
+                        </div>
+
+                        `;
+
+                    }
+                ).join("")}
+
+            </div>
+
+
+            <div class="message-input-row">
+
+                <input
+                    id="messageInput"
+                    type="text"
+                    placeholder="
+                        พิมพ์ข้อความ...
+                    "
+                >
+
+                <button
+                    onclick="sendMessage()"
+                >
+                    ส่ง
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+`;
+
+
+function sendMessage() {
+
+    const input =
+        document.getElementById(
+            "messageInput"
+        );
+
+    const message =
+        input.value.trim();
+
+
+    if (message === "") {
+        return;
+    }
+
+
+    const currentUser =
+        JSON.parse(
+            localStorage.getItem(
+                "currentUser"
+            )
+        );
+
+
+    const list =
+        document.getElementById(
+            "messageList"
+        );
+
+
+    const newMessage =
+        document.createElement(
+            "div"
+        );
+
+
+    newMessage.className =
+        "message-item";
+
+
+    newMessage.innerHTML = `
+
+        <div>
+
+            <strong>
+                ${currentUser.name}
+            </strong>
+
+            <small>
+                ตอนนี้
+            </small>
+
+        </div>
+
+        <p>
+            ${message}
+        </p>
+
+    `;
+
+
+    list.appendChild(
+        newMessage
+    );
+
+
+    input.value = "";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

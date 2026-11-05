@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>StaffFlow - Announcements</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+</head>
+
+<body class="dashboard-body">
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <h2>StaffFlow</h2>
+            <p>Work • Learn • Track</p>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a
+                href="dashboard.html"
+                class="menu-item"
+            >
+                Dashboard
+            </a>
+
+            <a
+                href="announcements.html"
+                class="menu-item active"
+            >
+                Announcements
+            </a>
+
+            <a
+                href="requests.html"
+                class="menu-item"
+            >
+                Requests
+            </a>
+
+            <a
+                href="training.html"
+                class="menu-item"
+            >
+                Training Center
+            </a>
+
+            <a
+                href="tracking.html"
+                class="menu-item"
+            >
+                Tracking
+            </a>
+
+            <a
+                href="reports.html"
+                class="menu-item"
+            >
+                Reports
+            </a>
+
+        </nav>
+
+        <button
+            class="logout-button"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Announcements</h1>
+
+                <p>
+                    ข่าวสาร ประกาศ และข้อมูลสำคัญภายในองค์กร
+                </p>
+            </div>
+
+            <div class="user-profile">
+
+                <div class="avatar">
+                    SF
+                </div>
+
+                <div>
+                    <strong id="userName"></strong>
+                    <small id="userRole"></small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="summary-grid">
+
+            <div class="summary-card">
+                <p>ประกาศทั้งหมด</p>
+                <h2 id="announcementCount">0</h2>
+                <span>ข่าวสารในระบบ</span>
+            </div>
+
+            <div class="summary-card">
+                <p>อ่านแล้ว</p>
+                <h2 id="readCount">0</h2>
+                <span>ประกาศที่คุณเปิดอ่านแล้ว</span>
+            </div>
+
+            <div class="summary-card">
+                <p>ยังไม่อ่าน</p>
+                <h2 id="unreadCount">0</h2>
+                <span>ประกาศที่ยังไม่ได้เปิด</span>
+            </div>
+
+            <div class="summary-card">
+                <p>รับทราบแล้ว</p>
+                <h2 id="ackCount">0</h2>
+                <span>ประกาศที่กดยืนยันรับทราบ</span>
+            </div>
+
+        </section>
+
+
+        <div class="announcements-toolbar">
+
+            <button
+                class="announcement-filter active"
+                data-filter="all"
+            >
+                ทั้งหมด
+            </button>
+
+            <button
+                class="announcement-filter"
+                data-filter="unread"
+            >
+                ยังไม่อ่าน
+            </button>
+
+            <button
+                class="announcement-filter"
+                data-filter="acknowledged"
+            >
+                รับทราบแล้ว
+            </button>
+
+        </div>
+
+
+        <section
+            id="announcementList"
+            class="announcement-list-page"
+        >
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="data/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/announcements.js"></script>
+
+</body>
+
+</html>

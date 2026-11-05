@@ -1,0 +1,157 @@
+/* =========================
+   REPORTS & ANALYTICS
+========================= */
+
+.report-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 30px 0 20px;
+
+    gap: 15px;
+}
+
+.report-toolbar h2 {
+    margin-bottom: 6px;
+}
+
+.report-toolbar p,
+.report-description {
+    color: #8993a3;
+    font-size: 13px;
+}
+
+.export-report-button {
+    width: auto;
+    padding: 12px 20px;
+
+    background: #1769ff;
+    color: white;
+
+    border-radius: 10px;
+}
+
+.export-report-button:hover {
+    background: #0d55d8;
+}
+
+.report-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+    margin-bottom: 22px;
+}
+
+.report-card {
+    min-width: 0;
+}
+
+.report-bar-item {
+    margin: 25px 0;
+}
+
+.report-bar-label {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    font-size: 14px;
+    color: #596273;
+}
+
+.report-bar-background {
+    height: 12px;
+    width: 100%;
+
+    background: #edf0f5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.report-bar-fill {
+    height: 100%;
+    border-radius: 20px;
+
+    transition: width 0.4s ease;
+}
+
+.report-table-card {
+    margin-bottom: 22px;
+}
+
+.report-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    margin-top: 20px;
+
+    min-width: 600px;
+}
+
+.report-table th {
+    padding: 15px;
+    text-align: left;
+
+    background: #f5f7fa;
+
+    color: #687386;
+    font-size: 13px;
+}
+
+.report-table td {
+    padding: 16px 15px;
+
+    border-bottom: 1px solid #edf0f4;
+
+    color: #596273;
+    font-size: 13px;
+}
+
+.report-table tr:hover td {
+    background: #fafbfc;
+}
+
+.report-status {
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    background: #eaf2ff;
+    color: #1769ff;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+
+    .report-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .report-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .export-report-button {
+        width: 100%;
+    }
+
+}

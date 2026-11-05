@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>StaffFlow - Tracking</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+</head>
+
+<body class="dashboard-body">
+
+<div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <h2>StaffFlow</h2>
+            <p>Work • Learn • Track</p>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a
+                href="dashboard.html"
+                class="menu-item"
+            >
+                Dashboard
+            </a>
+
+            <a
+                href="announcements.html"
+                class="menu-item"
+            >
+                Announcements
+            </a>
+
+            <a
+                href="requests.html"
+                class="menu-item"
+            >
+                Requests
+            </a>
+
+            <a
+                href="training.html"
+                class="menu-item"
+            >
+                Training Center
+            </a>
+
+            <a
+                href="tracking.html"
+                class="menu-item active"
+            >
+                Tracking
+            </a>
+
+            <a
+                href="reports.html"
+                class="menu-item"
+            >
+                Reports
+            </a>
+
+        </nav>
+
+        <button
+            class="logout-button"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </aside>
+
+
+    <!-- Main -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Tracking Center</h1>
+
+                <p>
+                    ติดตามงานและการอบรมทั้งหมดในที่เดียว
+                </p>
+            </div>
+
+            <div class="user-profile">
+
+                <div class="avatar">
+                    SF
+                </div>
+
+                <div>
+                    <strong id="userName"></strong>
+                    <small id="userRole"></small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Summary -->
+        <section class="summary-grid">
+
+            <div class="summary-card">
+
+                <p>กำลังดำเนินการ</p>
+
+                <h2 id="activeCount">
+                    0
+                </h2>
+
+                <span>
+                    งานและหลักสูตรที่ยังไม่เสร็จ
+                </span>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <p>Completed</p>
+
+                <h2 id="completedCount">
+                    0
+                </h2>
+
+                <span>
+                    รายการที่เสร็จแล้ว
+                </span>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <p>Requests</p>
+
+                <h2 id="requestCount">
+                    0
+                </h2>
+
+                <span>
+                    งานที่กำลังติดตาม
+                </span>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <p>Training</p>
+
+                <h2 id="trainingCount">
+                    0
+                </h2>
+
+                <span>
+                    หลักสูตรทั้งหมด
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- Filter -->
+        <div class="tracking-toolbar">
+
+            <button
+                class="tracking-filter-button active"
+                data-filter="all"
+            >
+                ทั้งหมด
+            </button>
+
+            <button
+                class="tracking-filter-button"
+                data-filter="request"
+            >
+                Requests
+            </button>
+
+            <button
+                class="tracking-filter-button"
+                data-filter="training"
+            >
+                Training
+            </button>
+
+            <button
+                class="tracking-filter-button"
+                data-filter="active"
+            >
+                กำลังดำเนินการ
+            </button>
+
+            <button
+                class="tracking-filter-button"
+                data-filter="completed"
+            >
+                Completed
+            </button>
+
+        </div>
+
+
+        <!-- Tracking List -->
+        <section
+            id="trackingContainer"
+            class="tracking-center-list"
+        >
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="data/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/tracking.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>StaffFlow - Requests</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+</head>
+
+<body class="dashboard-body">
+
+    <div class="app-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+                <h2>StaffFlow</h2>
+                <p>Work • Learn • Track</p>
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <a
+                    href="dashboard.html"
+                    class="menu-item"
+                >
+                    Dashboard
+                </a>
+
+                <a
+                    href="announcements.html"
+                    class="menu-item"
+                >
+                    Announcements
+                </a>
+
+                <a
+                    href="requests.html"
+                    class="menu-item active"
+                >
+                    Requests
+                </a>
+
+                <a
+                    href="training.html"
+                    class="menu-item"
+                >
+                    Training Center
+                </a>
+
+                <a
+                    href="tracking.html"
+                    class="menu-item"
+                >
+                    Tracking
+                </a>
+
+                <a
+                    href="reports.html"
+                    class="menu-item"
+                >
+                    Reports
+                </a>
+
+            </nav>
+
+            <button
+                class="logout-button"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </aside>
+
+
+        <!-- Main -->
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Requests</h1>
+
+                    <p>
+                        ติดตามคำขอและงานระหว่างฝ่ายทั้งหมด
+                    </p>
+                </div>
+
+                <div class="user-profile">
+
+                    <div class="avatar">
+                        SF
+                    </div>
+
+                    <div>
+                        <strong id="userName"></strong>
+                        <small id="userRole"></small>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- Filter -->
+            <div class="requests-toolbar">
+
+                <input
+                    id="requestSearch"
+                    class="request-search"
+                    type="text"
+                    placeholder="ค้นหาคำขอ..."
+                >
+
+                <select
+                    id="statusFilter"
+                    class="request-filter"
+                >
+                    <option value="all">
+                        ทุกสถานะ
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="In Progress">
+                        In Progress
+                    </option>
+
+                    <option value="Completed">
+                        Completed
+                    </option>
+                </select>
+
+            </div>
+
+
+            <section
+                id="requestList"
+                class="request-list-page"
+            >
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="data/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/requests.js"></script>
+
+</body>
+
+</html>

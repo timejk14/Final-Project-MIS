@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        StaffFlow - Training
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body class="dashboard-body">
+
+
+<div class="app-layout">
+
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <h2>
+                StaffFlow
+            </h2>
+
+            <p>
+                Work • Learn • Track
+            </p>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a
+                href="dashboard.html"
+                class="menu-item"
+            >
+                Dashboard
+            </a>
+
+            <a
+                href="announcements.html"
+                class="menu-item"
+            >
+                Announcements
+            </a>
+
+            <a
+                href="requests.html"
+                class="menu-item"
+            >
+                Requests
+            </a>
+
+            <a
+                href="training.html"
+                class="menu-item active"
+            >
+                Training Center
+            </a>
+
+            <a
+                href="tracking.html"
+                class="menu-item"
+            >
+                Tracking
+            </a>
+
+            <a
+                href="reports.html"
+                class="menu-item"
+            >
+                Reports
+            </a>
+
+        </nav>
+
+
+        <button
+            class="logout-button"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </aside>
+
+
+    <!-- Main -->
+    <main class="main-content">
+
+
+        <a
+            href="training.html"
+            class="back-link"
+        >
+            ← กลับไป Training Center
+        </a>
+
+
+        <section
+            id="trainingDetail"
+        >
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+<script src="data/data.js"></script>
+<script src="js/app.js"></script>
+
+
+<script>
+
+const trainingId =
+    localStorage.getItem(
+        "selectedTraining"
+    );
+
+
+let training =
+    trainings.find(
+        function (item) {
+
+            return (
+                item.id === trainingId
+            );
+
+        }
+    );
+
+
+if (!training) {
+
+    window.location.href =
+        "training.html";
+
+}
+
+
+function renderTraining() {
+
+    const container =
+        document.getElementById(
+            "trainingDetail"
+        );
+
+
+    container.innerHTML = `
+
+        <div class="training-detail-header">
+
+            <div>
+
+                <span class="course-category">
+                    ${training.category}
+                </span>
+
+                <h1>
+                    ${training.title}
+                </h1>
+
+                <p>
+                    ${training.description}
+                </p>
+
+            </div>
+
+
+            <div class="training-progress-card">
+
+                <strong>
+                    ${training.progress}%
+                </strong>
+
+                <span>
+                    ความคืบหน้า
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="training-detail-grid">
+
+
+            <!-- Content -->
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <h3>
+                        เนื้อหาการอบรม
+                    </h3>
+
+                </div>
+
+
+                <div class="learning-video">
+
+                    <div class="video-placeholder">
+
+                        <div>
+                            ▶
+                        </div>
+
+                        <h3>
+                            Customer Service Training
+                        </h3>
+
+                        <p>
+                            วิดีโอจำลองสำหรับ Project
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="learning-content">
+
+                    <h3>
+                        การจัดการสถานการณ์ที่ยาก
+                    </h3>
+
+                    <p>
+                        เมื่อต้องเผชิญกับลูกค้าที่ไม่พึงพอใจ
+                        สิ่งสำคัญคือการรับฟังอย่างตั้งใจ
+                        ไม่ขัดจังหวะ และแสดงความเข้าใจต่อปัญหา
+                        ก่อนเสนอแนวทางแก้ไขอย่างเหมาะสม
+                    </p>
+
+                    <p>
+                        หลักการสำคัญคือ
+                        Listen → Understand → Solve → Follow up
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Modules -->
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <h3>
+                        บทเรียน
+                    </h3>
+
+                </div>
+
+
+                <div class="module-list">
+
+                    ${training.modules.map(
+                        function (module) {
+
+                            return `
+
+                            <div class="module-item">
+
+                                <div
+                                    class="
+                                        module-check
+                                        ${
+                                            module.completed
+                                            ? "module-completed"
+                                            : ""
+                                        }
+                                    "
+                                >
+                                    ${
+                                        module.completed
+                                        ? "✓"
+                                        : module.id
+                                    }
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        ${module.title}
+                                    </strong>
+
+                                    <small>
+                                        ${
+                                            module.completed
+                                            ? "เรียนแล้ว"
+                                            : "ยังไม่เรียน"
+                                        }
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                            `;
+
+                        }
+                    ).join("")}
+
+                </div>
+
+
+                ${
+                    training.status
+                    !== "Completed"
+                    ? `
+
+                    <button
+                        class="complete-module-button"
+                        onclick="
+                            completeCurrentModule()
+                        "
+                    >
+                        เรียนบทนี้เสร็จแล้ว
+                    </button>
+
+                    `
+                    : ""
+                }
+
+            </div>
+
+
+            <!-- Quiz -->
+            <div
+                class="
+                    dashboard-card
+                    quiz-card
+                "
+            >
+
+                <div class="card-header">
+
+                    <h3>
+                        แบบทดสอบหลังเรียน
+                    </h3>
+
+                </div>
+
+
+                <div
+                    id="quizArea"
+                >
+                </div>
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    renderQuiz();
+
+}
+
+
+function completeCurrentModule() {
+
+    const module =
+        training.modules.find(
+            function (item) {
+                return !item.completed;
+            }
+        );
+
+
+    if (!module) {
+
+        alert(
+            "คุณเรียนครบทุกบทแล้ว สามารถทำแบบทดสอบได้"
+        );
+
+        return;
+    }
+
+
+    module.completed = true;
+
+
+    const completed =
+        training.modules.filter(
+            function (item) {
+                return item.completed;
+            }
+        ).length;
+
+
+    training.progress =
+        Math.round(
+            (
+                completed /
+                training.modules.length
+            ) * 80
+        );
+
+
+    alert(
+        "บันทึกการเรียนบทนี้เรียบร้อย"
+    );
+
+
+    renderTraining();
+
+}
+
+
+function renderQuiz() {
+
+    const quizArea =
+        document.getElementById(
+            "quizArea"
+        );
+
+
+    if (training.quiz.length === 0) {
+
+        quizArea.innerHTML = `
+
+            <p>
+                หลักสูตรนี้ไม่มี Quiz
+            </p>
+
+        `;
+
+        return;
+    }
+
+
+    if (
+        training.status ===
+        "Completed"
+    ) {
+
+        quizArea.innerHTML = `
+
+            <div class="quiz-result">
+
+                <h2>
+                    ผ่านการอบรมแล้ว
+                </h2>
+
+                <p>
+                    คะแนนของคุณ
+                </p>
+
+                <strong>
+                    ${training.score}%
+                </strong>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    let html = "";
+
+
+    training.quiz.forEach(
+        function (question, index) {
+
+            html += `
+
+                <div class="quiz-question">
+
+                    <h4>
+                        ${index + 1}.
+                        ${question.question}
+                    </h4>
+
+            `;
+
+
+            question.choices.forEach(
+                function (
+                    choice,
+                    choiceIndex
+                ) {
+
+                    html += `
+
+                        <label
+                            class="quiz-choice"
+                        >
+
+                            <input
+                                type="radio"
+                                name="question${index}"
+                                value="${choiceIndex}"
+                            >
+
+                            ${choice}
+
+                        </label>
+
+                    `;
+
+                }
+            );
+
+
+            html += `</div>`;
+
+        }
+    );
+
+
+    html += `
+
+        <button
+            class="submit-quiz-button"
+            onclick="submitQuiz()"
+        >
+            ส่งคำตอบ
+        </button>
+
+    `;
+
+
+    quizArea.innerHTML = html;
+
+}
+
+
+function submitQuiz() {
+
+    let correct = 0;
+
+
+    for (
+        let i = 0;
+        i < training.quiz.length;
+        i++
+    ) {
+
+        const selected =
+            document.querySelector(
+                `input[name="question${i}"]:checked`
+            );
+
+
+        if (!selected) {
+
+            alert(
+                "กรุณาตอบคำถามให้ครบทุกข้อ"
+            );
+
+            return;
+        }
+
+
+        if (
+            Number(selected.value)
+            ===
+            training.quiz[i].answer
+        ) {
+
+            correct++;
+
+        }
+
+    }
+
+
+    const score =
+        Math.round(
+            (
+                correct /
+                training.quiz.length
+            ) * 100
+        );
+
+
+    training.score = score;
+
+
+    if (score >= 70) {
+
+        training.status =
+            "Completed";
+
+        training.progress = 100;
+
+
+        localStorage.setItem(
+            "trainingResult_" +
+            training.id,
+
+            JSON.stringify({
+                status: "Completed",
+                score: score,
+                progress: 100
+            })
+        );
+
+
+        alert(
+            "ยินดีด้วย คุณผ่านการอบรม คะแนน " +
+            score +
+            "%"
+        );
+
+
+    } else {
+
+        alert(
+            "คุณได้ " +
+            score +
+            "% ต้องได้อย่างน้อย 70% กรุณาลองใหม่"
+        );
+
+    }
+
+
+    renderTraining();
+
+}
+
+
+const savedResult =
+    JSON.parse(
+        localStorage.getItem(
+            "trainingResult_" +
+            training.id
+        )
+    );
+
+
+if (savedResult) {
+
+    training.status =
+        savedResult.status;
+
+    training.score =
+        savedResult.score;
+
+    training.progress =
+        savedResult.progress;
+
+}
+
+
+renderTraining();
+
+</script>
+
+
+</body>
+
+</html>
